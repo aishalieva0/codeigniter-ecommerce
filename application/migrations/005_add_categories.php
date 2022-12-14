@@ -20,7 +20,10 @@ class Migration_Add_categories extends CI_Migration
             ),
             'parent_id' => array(
                 'type' => 'INT',
-                'constraint' => '5'
+                'constraint' => '5',
+                'unsigned' => TRUE
+
+
             ),
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',

@@ -16,11 +16,13 @@ class Migration_Add_order_products extends CI_Migration
             ),
             'order_id' => array(
                 'type' => 'INT',
-                'constraint' => '11'
+                'constraint' => '11',
+                'unsigned' => TRUE
             ),
             'product_id' => array(
                 'type' => 'INT',
-                'constraint' => '11'
+                'constraint' => '11',
+                'unsigned' => TRUE
             ),
             'price' => array(
                 'type' => 'DOUBLE',

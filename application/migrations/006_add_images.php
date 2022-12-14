@@ -16,7 +16,8 @@ class Migration_Add_images extends CI_Migration
             ),
             'product_id' => array(
                 'type' => 'INT',
-                'constraint' => '11'
+                'constraint' => '11',
+                'unsigned' => TRUE
             ),
             'path' => array(
                 'type' => 'VARCHAR',

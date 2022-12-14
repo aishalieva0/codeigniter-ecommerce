@@ -10,11 +10,13 @@ class Migration_Add_product_categories extends CI_Migration
         $this->dbforge->add_field(array(
             'product_id' => array(
                 'type' => 'INT',
-                'constraint' => 5,
+                'constraint' => 5,,
+                'unsigned' => TRUE
             ),
             'category_id' => array(
                 'type' => 'INT',
-                'constraint' => '5'
+                'constraint' => '5',
+                'unsigned' => TRUE
             )
         ));
 

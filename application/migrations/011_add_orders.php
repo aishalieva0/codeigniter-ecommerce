@@ -20,11 +20,13 @@ class Migration_Add_orders extends CI_Migration
             ),
             'payment_method' => array(
                 'type' => 'INT',
-                'constraint' => '11'
+                'constraint' => '11',
+                'unsigned' => TRUE
             ),
             'delivery_method' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '255'
+                'type' => 'INT',
+                'constraint' => '11',
+                'unsigned' => TRUE
             ),
             'total_amount' => array(
                 'type' => 'DOUBLE',
@@ -37,7 +39,8 @@ class Migration_Add_orders extends CI_Migration
             'updated_at datetime default current_timestamp on update current_timestamp',
             'status_id' => array(
                 'type' => 'INT',
-                'constraint' => '11'
+                'constraint' => '11',
+                'unsigned' => TRUE
             )
         ));
 

@@ -20,7 +20,8 @@ class Migration_Add_payment extends CI_Migration
             ),
             'order' => array(
                 'type' => 'INT',
-                'constraint' => '11'
+                'constraint' => '11',
+                'unsigned' => TRUE
             ),
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',
