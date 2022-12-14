@@ -6,7 +6,7 @@ class Migration_Add_pages extends CI_Migration
 {
 
     public function up()
-    {
+    { 
         $this->dbforge->add_field(array(
             'id' => array(
                 'type' => 'INT',
