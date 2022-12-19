@@ -1,13 +1,13 @@
 <?php
-
-class Admins_model extends CI_Model
+class Users_model extends CI_Model
 {
-    public $fullname;
-    public $password;
+    public $name;
+    public $surname;
     public $email;
+    public $phone;
     public $status;
 
-    protected $table = 'admins';
+    protected $table = 'users';
 
     public function insert($data)
     {

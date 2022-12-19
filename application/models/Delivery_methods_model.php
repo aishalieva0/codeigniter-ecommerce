@@ -1,13 +1,11 @@
 <?php
-
-class Admins_model extends CI_Model
+class Delivery_methods_model extends CI_Model
 {
-    public $fullname;
-    public $password;
-    public $email;
+    public $title;
+    public $order_id;
     public $status;
 
-    protected $table = 'admins';
+    protected $table = 'delivery_methods';
 
     public function insert($data)
     {

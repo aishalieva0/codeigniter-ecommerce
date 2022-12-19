@@ -16,7 +16,8 @@ class Migration_Add_orders extends CI_Migration
             ),
             'user_id' => array(
                 'type' => 'INT',
-                'constraint' => '255'
+                'constraint' => '11',
+                'unsigned' => TRUE
             ),
             'payment_method' => array(
                 'type' => 'INT',

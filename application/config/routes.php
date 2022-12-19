@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -59,4 +59,60 @@ $route['backend'] = 'backend/Dashboard/index';
 
 $route['backend/admins'] = 'backend/Admins/index';
 $route['backend/admins/create'] = 'backend/Admins/create';
-$route['backend/admins/create/(:num)'] = 'backend/Admins/edit/$1';
+$route['backend/admins/edit/(:num)'] = 'backend/Admins/edit/$1';
+
+$route['backend/products'] = 'backend/Products/index';
+$route['backend/products/create'] = 'backend/Products/create';
+$route['backend/products/edit/(:num)'] = 'backend/Products/edit/$1';
+
+$route['backend/brands'] = 'backend/Brands/index';
+$route['backend/brands/create'] = 'backend/Brands/create';
+$route['backend/brands/edit/(num:)'] = 'backend/Brands/edit/$1';
+
+$route['backend/categories'] = 'backend/Categories/index';
+$route['backend/categories/create'] = 'backend/Categories/create';
+$route['backend/categories/edit/(num:)'] = 'backend/Categories/edit/$1';
+
+$route['backend/images'] = 'backend/Images/index';
+$route['backend/images/create'] = 'backend/Images/create';
+$route['backend/images/edit/(num:)'] = 'backend/Images/edit/$1';
+
+$route['backend/product_images'] = 'backend/Product_images/index';
+$route['backend/product_images/create'] = 'backend/Product_images/create';
+$route['backend/product_images/edit/(num:)'] = 'backend/Product_images/edit/$1';//-
+
+$route['backend/product_categories'] = 'backend/Product_categories/index';
+$route['backend/product_categories/create'] = 'backend/Product_categories/create';
+$route['backend/product_categories/edit/(num:)'] = 'backend/Product_categories/edit/$1';//-
+
+$route['backend/payment'] = 'backend/Payment/index';
+$route['backend/payment/create'] = 'backend/Payment/create';
+$route['backend/payment/edit/(num:)'] = 'backend/Payment/edit/$1';
+
+$route['backend/delivery_methods'] = 'backend/Delivery_methods/index';
+$route['backend/delivery_methods/create'] = 'backend/Delivery_methods/create';
+$route['backend/delivery_methods/edit/(num:)'] = 'backend/Delivery_methods/edit/$1';
+
+$route['backend/orders'] = 'backend/Orders/index';
+$route['backend/orders/create'] = 'backend/Orders/create';
+$route['backend/orders/edit/(num:)'] = 'backend/Orders/edit/$1';//
+
+$route['backend/order_status'] = 'backend/Order_status/index';
+$route['backend/order_status/create'] = 'backend/Order_status/create';
+$route['backend/order_status/edit/(num:)'] = 'backend/Order_status/edit/$1';
+
+$route['backend/order_products'] = 'backend/Order_products/index';
+$route['backend/order_products/create'] = 'backend/Order_products/create';
+$route['backend/order_products/edit/(num:)'] = 'backend/Order_products/edit/$1';
+
+$route['backend/settings'] = 'backend/Settings/index';
+$route['backend/settings/create'] = 'backend/Settings/create';
+$route['backend/settings/edit/(num:)'] = 'backend/Settings/edit/$1';
+
+$route['backend/blogs'] = 'backend/Blogs/index';
+$route['backend/blogs/create'] = 'backend/Blogs/create';
+$route['backend/blogs/edit/(num:)'] = 'backend/Blogs/edit/$1';
+
+$route['backend/pages'] = 'backend/Pages/index';
+$route['backend/pages/create'] = 'backend/Pages/create';
+$route['backend/pages/edit/(num:)'] = 'backend/Pages/edit/$1';

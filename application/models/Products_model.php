@@ -1,13 +1,18 @@
 <?php
 
-class Admins_model extends CI_Model
+class Products_model extends CI_Model
 {
-    public $fullname;
-    public $password;
-    public $email;
+    public $title;
+    public $desc;
+    public $brand_id;
+    public $price;
+    public $quantity;
+    public $sale_price;
+    public $created_at;
+    public $updated_at;
     public $status;
 
-    protected $table = 'admins';
+    protected $table = 'products';
 
     public function insert($data)
     {

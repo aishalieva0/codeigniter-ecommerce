@@ -1,13 +1,14 @@
 <?php
 
-class Admins_model extends CI_Model
+class Order_products_model extends CI_Model
 {
-    public $fullname;
-    public $password;
-    public $email;
-    public $status;
+    public $order_id;
+    public $product_id;
+    public $price;
+    public $quantity;
+    public $amount;
 
-    protected $table = 'admins';
+    protected $table = 'order_products';
 
     public function insert($data)
     {

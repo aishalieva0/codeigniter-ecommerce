@@ -24,7 +24,8 @@ class Migration_Add_products extends CI_Migration
             ),
             'brand_id' => array(
                 'type' => 'INT',
-                'constraint' => '5'
+                'constraint' => '5',
+                'unsigned' => TRUE
             ),
             'price' => array(
                 'type' => 'DOUBLE',

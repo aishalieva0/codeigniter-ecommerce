@@ -1,13 +1,11 @@
 <?php
-
-class Admins_model extends CI_Model
+class Payment_model extends CI_Model
 {
-    public $fullname;
-    public $password;
-    public $email;
+    public $title;
+    public $order;
     public $status;
 
-    protected $table = 'admins';
+    protected $table = 'payment';
 
     public function insert($data)
     {

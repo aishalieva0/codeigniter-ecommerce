@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Migration_Add_blog extends CI_Migration
+class Migration_Add_blogs extends CI_Migration
 {
 
     public function up()
@@ -43,11 +43,11 @@ class Migration_Add_blog extends CI_Migration
 
 
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('blog');
+        $this->dbforge->create_table('blogs');
     }
 
     public function down()
     {
-        $this->dbforge->drop_table('blog');
+        $this->dbforge->drop_table('blogs');
     }
 }

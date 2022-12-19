@@ -1,13 +1,15 @@
 <?php
 
-class Admins_model extends CI_Model
+class Blogs_model extends CI_Model
 {
-    public $fullname;
-    public $password;
-    public $email;
+    public $title;
+    public $desc;
+    public $image;
+    public $video;
+    public $content;
     public $status;
 
-    protected $table = 'admins';
+    protected $table = 'blogs';
 
     public function insert($data)
     {

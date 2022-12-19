@@ -19,6 +19,7 @@ class MY_Loader extends CI_Loader
         }
     }
 
+
     public function front($template_name, $vars = array(), $return = FALSE)
     {
    		// $this->model('Users_model','settings');
