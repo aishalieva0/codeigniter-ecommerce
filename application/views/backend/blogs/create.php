@@ -7,7 +7,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="<?= base_url('backend/blogs/create'); ?>" method="post">
+                <form action="<?= base_url('backend/blogs/create'); ?>" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -21,12 +21,12 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="text" name="image" class="form-control" placeholder="Enter image">
+                            <input type="file" name="image" class="form-control">
                             <?php echo form_error('image'); ?>
                         </div>
                         <div class="form-group">
-                            <label for="video">video</label>
-                            <input type="text" name="Video" class="form-control" placeholder="Enter video">
+                            <label for="video">Video</label>
+                            <input type="text" name="video" class="form-control">
                             <?php echo form_error('video'); ?>
                         </div>
                         <div class="form-group">

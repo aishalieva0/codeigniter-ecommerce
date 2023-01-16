@@ -26,7 +26,7 @@ class Categories extends CI_Controller
         if ($this->input->post()) {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('title', 'Title','required');
+            $this->form_validation->set_rules('title', 'Title', 'required');
 
 
             if ($this->form_validation->run() == FALSE) {
@@ -49,6 +49,7 @@ class Categories extends CI_Controller
         }
 
         $data['title'] = 'Categories List';
+        $data['categories'] = $this->categories_md->select_all();
 
         $this->load->admin('categories/create', $data);
     }
@@ -61,7 +62,7 @@ class Categories extends CI_Controller
 
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('title', 'Title','required');
+            $this->form_validation->set_rules('title', 'Title', 'required');
 
 
             if ($this->form_validation->run() == FALSE) {
@@ -78,9 +79,8 @@ class Categories extends CI_Controller
 
             if ($affected_rows > 0) {
                 $this->session->set_flashdata('success_message', 'All records has been changed successfully !');
-                
-                redirect('backend/categories');
             }
+            redirect('backend/categories');
         }
 
         $item = $this->categories_md->selectDataById($id);
@@ -94,6 +94,8 @@ class Categories extends CI_Controller
         $data['item'] = $item;
 
         $data['title'] = 'Category Edit';
+        $data['categories'] = $this->categories_md->select_all();
+
 
         $this->load->admin('categories/edit', $data);
     }

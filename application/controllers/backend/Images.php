@@ -7,6 +7,8 @@ class Images extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Images_model', 'images_md');
+        $this->load->model('Products_model', 'products_md');
+
     }
 
     public function index()
@@ -26,16 +28,38 @@ class Images extends CI_Controller
         if ($this->input->post()) {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('path', 'Photo','required');
-            $this->form_validation->set_rules('product_id', 'Product','required');
+            $this->form_validation->set_rules('path', 'Photo', 'required');
+            $this->form_validation->set_rules('product_id', 'Product', 'required');
 
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->admin('images/create');
             }
 
+            $upload_path = 'upload/';
+
+            if (!file_exists("upload")) {
+                mkdir("upload");
+            }
+            if (!file_exists($upload_path)) {
+                mkdir($upload_path);
+            }
+
+            $config['upload_path']   = $upload_path;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['overwrite'] = FALSE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('path')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_message', $error);
+            } else {
+                $file_data = $this->upload->data();;
+            }
+
             $request_data = [
-                'path' => $this->security->xss_clean($this->input->post('path')),
+                'path' => $upload_path . $file_data['file_name'],
                 'product_id' => $this->security->xss_clean($this->input->post('product_id')),
                 'main' => $this->security->xss_clean($this->input->post('main'))
             ];
@@ -50,6 +74,8 @@ class Images extends CI_Controller
         }
 
         $data['title'] = 'images List';
+        $products = new Products_model;
+        $data['products'] = $products->select_all();
 
         $this->load->admin('images/create', $data);
     }
@@ -60,29 +86,46 @@ class Images extends CI_Controller
         if ($this->input->post()) {
             $id = $this->security->xss_clean($id);
 
+            $path = $this->input->post('path');
+            $new_path = $_FILES["path"]["tmp_name"];
+
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('path', 'Photo','required');
-            $this->form_validation->set_rules('product_id', 'Product','required');
+            $this->form_validation->set_rules('path', 'Photo', 'required');
+            $this->form_validation->set_rules('product_id', 'Product', 'required');
 
 
             if ($this->form_validation->run() == FALSE) {
-                $this->load->admin('images/create');
+                $this->load->admin('images/edit');
             }
 
             $request_data = [
-                // 'path' => $this->security->xss_clean($this->input->post('path')),
                 'product_id' => $this->security->xss_clean($this->input->post('product_id')),
                 'main' => $this->security->xss_clean($this->input->post('main'))
             ];
+            if ($new_path) {
+                $upload_path = 'upload/';
 
+                $config['upload_path'] = $upload_path;
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['overwrite'] = FALSE;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('path')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->session->set_flashdata('error_message', $error);
+                } else {
+                    $file_data = $this->upload->data();
+                    $request_data['path'] = $upload_path . $file_data['file_name'];
+                }
+            }
             $affected_rows = $this->images_md->update($id, $request_data);
 
             if ($affected_rows > 0) {
                 $this->session->set_flashdata('success_message', 'All records has been changed successfully !');
-                
-                redirect('backend/images');
             }
+            redirect('backend/images');
         }
 
         $item = $this->images_md->selectDataById($id);
@@ -96,6 +139,9 @@ class Images extends CI_Controller
         $data['item'] = $item;
 
         $data['title'] = 'Image Edit';
+        
+        $products = new Products_model;
+        $data['products'] = $products->select_all();
 
         $this->load->admin('images/edit', $data);
     }

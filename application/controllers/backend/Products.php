@@ -7,15 +7,26 @@ class Products extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Products_model', 'products_md');
+        $this->load->model('Brands_model', 'brands_md');
     }
+
+    // public function selectById($id)
+    // {
+    // }
 
     public function index()
     {
         $data['title'] = 'Products List';
 
         $products = new Products_model();
+        // $brands = new Brands_model();
 
         $data['lists'] = $products->select_all();
+        // $id = 2;
+
+        // $data['brands'] = $this->brands_md->selectDataById($id);
+        // $data['brands'] = $brands->selectDataById($id);
+
 
         $this->load->admin('products/index', $data);
     }
@@ -26,11 +37,11 @@ class Products extends CI_Controller
         if ($this->input->post()) {
             $this->load->library('form_validation');
 
-            
-            $this->form_validation->set_rules('title', 'Title','required');
-            $this->form_validation->set_rules('brand_id', 'Brand','required');
-            $this->form_validation->set_rules('price', 'Price','required');
-            $this->form_validation->set_rules('quantity', 'Quantity','required');
+
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('brand_id', 'Brand', 'required');
+            $this->form_validation->set_rules('price', 'Price', 'required');
+            $this->form_validation->set_rules('quantity', 'Quantity', 'required');
 
 
             if ($this->form_validation->run() == FALSE) {
@@ -57,6 +68,8 @@ class Products extends CI_Controller
         }
 
         $data['title'] = 'Products List';
+        $brands = new Brands_model();
+        $data['brands'] = $brands->select_all();
 
         $this->load->admin('products/create', $data);
     }
@@ -69,13 +82,13 @@ class Products extends CI_Controller
 
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('title', 'Title','required');
-            $this->form_validation->set_rules('brand_id', 'Brand','required');
-            $this->form_validation->set_rules('price', 'Price','required');
-            $this->form_validation->set_rules('quantity', 'Quantity','required');
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('brand_id', 'Brand', 'required');
+            $this->form_validation->set_rules('price', 'Price', 'required');
+            $this->form_validation->set_rules('quantity', 'Quantity', 'required');
 
             if ($this->form_validation->run() == FALSE) {
-                $this->load->admin('products/create');
+                $this->load->admin('products/edit');
             }
 
             $request_data = [
@@ -92,9 +105,8 @@ class Products extends CI_Controller
 
             if ($affected_rows > 0) {
                 $this->session->set_flashdata('success_message', 'All records has been changed successfully !');
-                
-                redirect('backend/products');
             }
+            redirect('backend/products');
         }
 
         $item = $this->products_md->selectDataById($id);
@@ -108,6 +120,8 @@ class Products extends CI_Controller
         $data['item'] = $item;
 
         $data['title'] = 'Product Edit';
+        $brands = new Brands_model();
+        $data['brands'] = $brands->select_all();
 
         $this->load->admin('products/edit', $data);
     }

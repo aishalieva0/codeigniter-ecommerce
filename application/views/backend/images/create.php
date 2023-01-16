@@ -9,10 +9,14 @@
                 <!-- form start -->
                 <form action="<?= base_url('backend/images/create'); ?>" method="post" enctype="multipart/form-data">
                     <div class="card-body">
-                        <div class="form-group">
+                    <div class="form-group">
                             <label for="product_id">Product</label>
-                            <input type="text" name="product_id" class="form-control" placeholder="Enter Product">
-                            <?php echo form_error('product_id'); ?>
+                            <select name="product_id" class="form-control">
+                                <option value="">Choose product</option>
+                                <?php foreach ($products as $product) : ?>
+                                    <option value="<?= $product->id ?>"><?= $product->title ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="path">Path</label>

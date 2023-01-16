@@ -11,12 +11,21 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="product_id">Product</label>
-                            <input type="text" name="product_id" class="form-control" value="<?= $item->product_id; ?>" placeholder="Enter product">
-                            <?php echo form_error('product_id'); ?>
+                            <select name="product_id" class="form-control">
+
+                                <?php foreach ($products as $product) :
+                                    $selected = '';
+                                    if ($item->product_id == $product->id) {
+                                        $selected = 'selected';
+                                    } ?>
+
+                                    <option value="<?= $product->id ?>" <?= $selected ?>> <?= $product->title ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="path">Path</label>
-                            <input type="file" name="path" class="form-control" value="<?= $item->path; ?>" placeholder="Enter path">
+                            <input type="file" name="path" class="form-control">
                             <?php echo form_error('path'); ?>
                         </div>
                         <div class="form-group">

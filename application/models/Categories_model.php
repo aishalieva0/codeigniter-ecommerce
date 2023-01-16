@@ -35,6 +35,13 @@ class Categories_model extends CI_Model
         $this->db->update($this->table, $data);
     }
 
+    public function join()
+    {
+        $this->db->select('c.title,c.id,p.title as parent_title,c.status');
+        $this->db->from('categories c');
+        $this->db->join('categories p ', 'c.parent_id=p.id', 'Left');
+    }
+
     public function delete($id)
     {
         $this->db->where('id', $id);

@@ -27,9 +27,9 @@ class MY_Loader extends CI_Loader
         // $img = $CI->users_model->getUserByID($user_id);
         // $data['user'] = ['image' => $img];
 
-        $header  = $this->view('front/template/header',   $vars, $return); // default header
-        $content = $this->view('front/' . $template_name, $vars, $return); // view as controller
-        $footer  = $this->view('front/template/footer',   $vars, $return); // default footer
+        $header  = $this->view('frontend/template/header',   $vars, $return); // default header
+        $content = $this->view('frontend/' . $template_name, $vars, $return); // view as controller
+        $footer  = $this->view('frontend/template/footer',   $vars, $return); // default footer
 
         if ($return)
         {
@@ -41,15 +41,15 @@ class MY_Loader extends CI_Loader
 
     public function main($template = array(), $vars = array(), $return = FALSE)
     {
-        $header = $this->view('front/template/header', $vars, $return); // default header
+        $header = $this->view('frontend/template/header', $vars, $return); // default header
 
         foreach ($template as $value)
         {
-            $this->view('front/' . $value, $vars, $return);
+            $this->view('frontend/' . $value, $vars, $return);
         }
 
         // $content  = $this->view('front/' . $template_name, $vars, $return); // view as controller
-        $footer   = $this->view('front/template/footer',   $vars, $return); // default footer
+        $footer   = $this->view('frontend/template/footer',   $vars, $return); // default footer
 
         if ($return)
         {

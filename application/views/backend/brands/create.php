@@ -17,7 +17,7 @@
 						
 						<div class="form-group">
 							<label for="logo">Logo</label>
-							<input type="file" name="logo" class="form-control" placeholder="Choose File">
+							<input type="file" name="logo" class="form-control">
 							<?php echo form_error('logo'); ?>
 						</div>
 					

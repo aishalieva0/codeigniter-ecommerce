@@ -5,8 +5,6 @@
                 <div class="card-header">
                     <h3 class="card-title">Delivery Methods Create</h3>
                 </div>
-                <!-- /.card-header -->
-                <!-- form start -->
                 <form action="<?= base_url('backend/delivery_methods/create'); ?>" method="post">
                     <div class="card-body">
                         <div class="form-group">
@@ -14,13 +12,15 @@
                             <input type="text" name="title" class="form-control" placeholder="Enter Title">
                             <?php echo form_error('title'); ?>
                         </div>
-						
                         <div class="form-group">
-                            <label for="order_id">order</label>
-                            <input type="text" name="order_id" class="form-control" placeholder="Enter order">
-                            <?php echo form_error('order_id'); ?>
+                            <label for="order_id">Order</label>
+                            <select name="order_id" class="form-control">
+                                <option value="">Choose order</option>
+                                <?php foreach ($orders as $order) : ?>
+                                    <option value="<?= $order->id ?>"><?= $order->id ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
-					
                         <div class="form-group">
                             <label for="Status">Status</label>
                             <br>

@@ -87,6 +87,7 @@ class Admins extends CI_Controller
 
                 redirect('backend/admins/edit/' . $id);
             }
+            redirect('backend/admins');
         }
 
         $item = $this->admins_md->selectDataById($id);

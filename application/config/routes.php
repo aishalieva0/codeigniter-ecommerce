@@ -49,7 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'Home/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -77,14 +77,6 @@ $route['backend/images'] = 'backend/Images/index';
 $route['backend/images/create'] = 'backend/Images/create';
 $route['backend/images/edit/(num:)'] = 'backend/Images/edit/$1';
 
-$route['backend/product_images'] = 'backend/Product_images/index';
-$route['backend/product_images/create'] = 'backend/Product_images/create';
-$route['backend/product_images/edit/(num:)'] = 'backend/Product_images/edit/$1';//-
-
-$route['backend/product_categories'] = 'backend/Product_categories/index';
-$route['backend/product_categories/create'] = 'backend/Product_categories/create';
-$route['backend/product_categories/edit/(num:)'] = 'backend/Product_categories/edit/$1';//-
-
 $route['backend/payment'] = 'backend/Payment/index';
 $route['backend/payment/create'] = 'backend/Payment/create';
 $route['backend/payment/edit/(num:)'] = 'backend/Payment/edit/$1';
@@ -94,8 +86,7 @@ $route['backend/delivery_methods/create'] = 'backend/Delivery_methods/create';
 $route['backend/delivery_methods/edit/(num:)'] = 'backend/Delivery_methods/edit/$1';
 
 $route['backend/orders'] = 'backend/Orders/index';
-$route['backend/orders/create'] = 'backend/Orders/create';
-$route['backend/orders/edit/(num:)'] = 'backend/Orders/edit/$1';//
+$route['backend/orders/edit/(num:)'] = 'backend/Orders/edit/$1';
 
 $route['backend/order_status'] = 'backend/Order_status/index';
 $route['backend/order_status/create'] = 'backend/Order_status/create';
@@ -116,3 +107,41 @@ $route['backend/blogs/edit/(num:)'] = 'backend/Blogs/edit/$1';
 $route['backend/pages'] = 'backend/Pages/index';
 $route['backend/pages/create'] = 'backend/Pages/create';
 $route['backend/pages/edit/(num:)'] = 'backend/Pages/edit/$1';
+
+$route['backend'] = 'backend/login';
+
+
+
+//frontend
+
+$route['login'] = 'frontend/Auth/login';
+$route['register'] = 'frontend/Auth/signup';
+
+$route['wishlist'] = 'frontend/Wishlist/index';
+
+
+$route['faq'] = 'frontend/Faq/index';
+$route['typography'] = 'frontend/Typography/index';
+$route['sitemap'] = 'frontend/Sitemap/index';
+$route['contact'] = 'frontend/Contact/index';
+$route['about_us'] = 'frontend/About_us/index';
+
+$route['cart'] = 'frontend/Cart/index';
+$route['checkout'] = 'frontend/Checkout/index';
+$route['compare'] = 'frontend/Compare/index';
+
+$route['my-account'] = 'frontend/Account/index';
+
+$route['order-history'] = 'frontend/Order/history';
+$route['order-info'] = 'frontend/Order/info';
+$route['return'] = 'frontend/Product_return/index';
+$route['gift-voucher'] = 'frontend/Gift_voucher/index';
+
+
+$route['blog'] = 'frontend/Blog/index';
+
+
+
+// $route['myaccount'] = 'frontend/Account/index';
+
+

@@ -7,7 +7,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="<?= base_url('backend/blogs/edit/' . $item->id); ?>" method="post">
+                <form action="<?= base_url('backend/blogs/edit/' . $item->id); ?>" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
-                            <input type="text" name="image" class="form-control" value="<?= $item->image; ?>" placeholder="Enter Image">
+                            <input type="file" name="image" class="form-control">
                             <?php echo form_error('image'); ?>
                         </div>
                         <div class="form-group">

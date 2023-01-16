@@ -7,6 +7,7 @@ class Delivery_methods extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Delivery_methods_model', 'delivery_methods_md');
+        $this->load->model('Orders_model', 'orders_md');
     }
 
     public function index()
@@ -26,8 +27,8 @@ class Delivery_methods extends CI_Controller
         if ($this->input->post()) {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('title', 'Title','required');
-            $this->form_validation->set_rules('order_id', 'Order','required');
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('order_id', 'Order', 'required');
 
 
 
@@ -52,6 +53,9 @@ class Delivery_methods extends CI_Controller
 
         $data['title'] = 'Delivery Methods List';
 
+        $orders = new Orders_model;
+        $data['orders'] = $orders->select_all();
+
         $this->load->admin('delivery_methods/create', $data);
     }
 
@@ -63,8 +67,8 @@ class Delivery_methods extends CI_Controller
 
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('title', 'Title','required');
-            $this->form_validation->set_rules('order_id', 'Order','required');
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('order_id', 'Order', 'required');
 
 
 
@@ -82,9 +86,8 @@ class Delivery_methods extends CI_Controller
 
             if ($affected_rows > 0) {
                 $this->session->set_flashdata('success_message', 'All records has been changed successfully !');
-                
-                redirect('backend/delivery_methods');
             }
+            redirect('backend/delivery_methods');
         }
 
         $item = $this->delivery_methods_md->selectDataById($id);
@@ -98,6 +101,9 @@ class Delivery_methods extends CI_Controller
         $data['item'] = $item;
 
         $data['title'] = 'Delivery Methods Edit';
+
+        $orders = new Orders_model;
+        $data['orders'] = $orders->select_all();
 
         $this->load->admin('delivery_methods/edit', $data);
     }

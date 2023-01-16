@@ -22,27 +22,46 @@ class Blogs extends CI_Controller
 
     public function create()
     {
-
         if ($this->input->post()) {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('title', 'Title','required');
-            $this->form_validation->set_rules('content', 'Content','required');
-          
-
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('content', 'Content', 'required');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->admin('blogs/create');
             }
 
+            $path = 'upload/';
+
+            if (!file_exists("upload")) {
+                mkdir("upload");
+            }
+            if (!file_exists($path)) {
+                mkdir($path);
+            }
+
+            $config['upload_path']   = $path;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['overwrite'] = FALSE;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('image')) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_message', $error);
+            } else {
+                $file_data = $this->upload->data();;
+            }
+
             $request_data = [
                 'title' => $this->security->xss_clean($this->input->post('title')),
                 'desc' => $this->security->xss_clean($this->input->post('desc')),
-                'image' => $this->security->xss_clean($this->input->post('image')),
+                'image' => $path . $file_data['file_name'],
                 'video' => $this->security->xss_clean($this->input->post('video')),
                 'content' => $this->security->xss_clean($this->input->post('content')),
                 'status' => $this->security->xss_clean($this->input->post('status'))
-            ];
+            ]; //
 
             $insert_id = $this->blogs_md->insert($request_data);
 
@@ -60,35 +79,53 @@ class Blogs extends CI_Controller
 
     public function edit($id)
     {
-
         if ($this->input->post()) {
             $id = $this->security->xss_clean($id);
 
-            $this->load->library('form_validation');
+            $img = $this->input->post('image');
+            $new_img = $_FILES["image"]["tmp_name"];
 
-            $this->form_validation->set_rules('title', 'Title','required');
-            $this->form_validation->set_rules('content', 'Content','required');
+            $this->load->library('form_validation');
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('content', 'Content', 'required');
 
             if ($this->form_validation->run() == FALSE) {
-                $this->load->admin('blogs/create');
+                $this->load->admin('blogs/edit');
             }
 
             $request_data = [
                 'title' => $this->security->xss_clean($this->input->post('title')),
                 'desc' => $this->security->xss_clean($this->input->post('desc')),
-                'image' => $this->security->xss_clean($this->input->post('image')),
                 'video' => $this->security->xss_clean($this->input->post('video')),
                 'content' => $this->security->xss_clean($this->input->post('content')),
                 'status' => $this->security->xss_clean($this->input->post('status'))
             ];
+            if ($new_img) {
+                $path = 'upload/';
 
+                $config['upload_path'] = $path;
+                $config['allowed_types'] = 'gif|jpg|png';
+                // $config['max_size'] = 2000;
+                // $config['max_width'] = 1500;
+                // $config['max_height'] = 1500;
+                $config['overwrite'] = FALSE;
+
+                $this->load->library('upload', $config);
+
+                if (!$this->upload->do_upload('image')) {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->session->set_flashdata('error_message', $error);
+                } else {
+                    $file_data = $this->upload->data();
+                    $request_data['image'] = $path . $file_data['file_name'];
+                }
+            }
             $affected_rows = $this->blogs_md->update($id, $request_data);
 
             if ($affected_rows > 0) {
                 $this->session->set_flashdata('success_message', 'All records has been changed successfully !');
-                
-                redirect('backend/blogs');
             }
+            redirect('backend/blogs');
         }
 
         $item = $this->blogs_md->selectDataById($id);

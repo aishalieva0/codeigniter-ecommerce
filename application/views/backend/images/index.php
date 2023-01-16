@@ -34,7 +34,7 @@
                                     <?php foreach ($lists as $item) : ?>
                                         <tr>
                                             <td><?= $item->product_id; ?></td>
-                                            <td><?= $item->path; ?></td>
+                                            <td><img src="<?= base_url($item->path) ?>" height="50" width="50"></td>
                                             <td><?= $item->main; ?></td>
                                             <td><?= $item->created_at; ?></td>
                                             <td><?= $item->updated_at; ?></td>

@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DivBlog</title>
+    <title>E-commerce</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
@@ -26,7 +26,11 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/backend/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/backend/plugins/summernote/summernote-bs4.min.css">
+    <!-- <link rel="stylesheet" href="https://font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- <script src="https://kit.fontawesome.com/cabd738477.js" crossorigin="anonymous"></script> -->
+
 </head>
+
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -39,7 +43,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index.php?route=dashboard.php" class="nav-link">Home</a>
+                    <a  href="<?= base_url('backend/dashboard'); ?>"class="nav-link">Home</a>
                 </li>
             </ul>
 
@@ -49,12 +53,20 @@
                 <li class="nav-item dropdown">
 
                     <!--                //logout-->
-                    <a class="nav-link" href="logout.php">
-                        <i class="fas fa-sign-out-alt"></i>
+             
+
+                    <a href="<?= base_url('backend/login/logout'); ?>" class="btn btn-danger float-right">
+                        Logout
                     </a>
-                    <!--                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">-->
-                    <!--                    <a href="#" class="dropdown-item dropdown-footer">Logout</a>-->
-                    <!--                </div>-->
+                    <i class="fas fa-sign-out-alt"></i>
+
+                    
+                    <!-- </a>
+                      <a href="<?= base_url('backend/logout'); ?>"  class="nav-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    </a> -->
+
+                  
                 </li>
 
             </ul>

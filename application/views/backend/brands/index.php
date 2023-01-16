@@ -34,7 +34,7 @@
                                     <?php foreach ($lists as $item) : ?>
                                         <tr>
                                             <td><?= $item->title; ?></td>
-                                            <td><?= $item->logo; ?></td>
+                                            <td><img src="<?= base_url($item->logo) ?> " height="50" width="50"></td>
                                             <td><?= $item->created_at; ?></td>
                                             <td><?= $item->updated_at; ?></td>
                                             <td><?= $item->status; ?></td>

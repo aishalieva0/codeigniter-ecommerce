@@ -11,13 +11,30 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="order_id">Order</label>
-                            <input type="text" name="order_id" class="form-control" value="<?= $item->order_id; ?>" placeholder="Enter order">
-                            <?php echo form_error('order_id'); ?>
+                            <select name="order_id" class="form-control">
+                                
+                                <?php foreach ($orders as $order) :
+                                    $selected = '';
+                                    if ($item->order_id == $order->id) {
+                                        $selected = 'selected';
+                                    } ?>
+                                    <option value="<?= $order->id ?>" <?= $selected ?>><?= $order->id ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="product_id">Product</label>
-                            <input type="text" name="product_id" class="form-control" value="<?= $item->product_id; ?>" placeholder="Enter product">
-                            <?php echo form_error('product_id'); ?>
+                            <select name="product_id" class="form-control">
+
+                                <?php foreach ($products as $product) :
+                                    $selected = '';
+                                    if ($item->product_id == $product->id) {
+                                        $selected = 'selected';
+                                    } ?>
+
+                                    <option value="<?= $product->id ?>" <?= $selected ?>> <?= $product->title ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>

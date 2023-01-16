@@ -17,44 +17,41 @@
                                 </div>
                             </div>
                         </div>
-									<!-- /.card-header -->
+                        <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
                                 <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Image</th>
-                                    <th>Video</th>
-                                    <th>Content</th>
-                                    <th>Create date</th>
-                                    <th>Update date</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>Video</th>
+                                        <th>Content</th>
+                                        <th>Create date</th>
+                                        <th>Update date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($lists as $item) : ?>
+                                    <?php foreach ($lists as $item) : ?>
                                         <tr>
                                             <td><?= $item->title; ?></td>
                                             <td><?= $item->desc; ?></td>
-                                            <td><?= $item->image; ?></td>
+                                            <td><img src="<?= base_url($item->image) ?> " height="50" width="50"></td>
                                             <td><?= $item->video; ?></td>
                                             <td><?= $item->content; ?></td>
                                             <td><?= $item->created_at; ?></td>
                                             <td><?= $item->updated_at; ?></td>
                                             <td><?= $item->status; ?></td>
                                             <td style="display:flex;column-gap:5px;">
-                                            <a href="<?= base_url('backend/blogs/edit/'.$item->id); ?>" title="Edit"
-                                               class="btn btn-sm btn-primary pull-right">
-                                               Edit
-                                            </a>
-                                            <a href="<?= base_url('backend/blogs/delete/'.$item->id); ?>"
-                                               title="Delete"
-                                               class="btn btn-sm btn-danger pull-right">
-                                               Delete
-                                            </a>
-                                        </td>
+                                                <a href="<?= base_url('backend/blogs/edit/' . $item->id); ?>" title="Edit" class="btn btn-sm btn-primary pull-right">
+                                                    Edit
+                                                </a>
+                                                <a href="<?= base_url('backend/blogs/delete/' . $item->id); ?>" title="Delete" class="btn btn-sm btn-danger pull-right">
+                                                    Delete
+                                                </a>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

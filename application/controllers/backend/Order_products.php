@@ -7,6 +7,8 @@ class Order_products extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Order_products_model', 'order_products_md');
+        $this->load->model('Products_model', 'products_md');
+        $this->load->model('Orders_model', 'orders_md');
     }
 
     public function index()
@@ -26,12 +28,12 @@ class Order_products extends CI_Controller
         if ($this->input->post()) {
             $this->load->library('form_validation');
 
-            
-            $this->form_validation->set_rules('order_id', 'Order','required');
-            $this->form_validation->set_rules('product_id', 'Product','required');
-            $this->form_validation->set_rules('price', 'Price','required');
-            $this->form_validation->set_rules('quantity', 'Quantity','required');
-            $this->form_validation->set_rules('amount', 'Amount','required');
+
+            $this->form_validation->set_rules('order_id', 'Order', 'required');
+            $this->form_validation->set_rules('product_id', 'Product', 'required');
+            $this->form_validation->set_rules('price', 'Price', 'required');
+            $this->form_validation->set_rules('quantity', 'Quantity', 'required');
+            $this->form_validation->set_rules('amount', 'Amount', 'required');
 
 
             if ($this->form_validation->run() == FALSE) {
@@ -57,6 +59,12 @@ class Order_products extends CI_Controller
 
         $data['title'] = 'Order_products List';
 
+        $products = new Products_model;
+        $data['products'] = $products->select_all();
+        
+        $orders = new Orders_model;
+        $data['orders'] = $orders->select_all();
+
         $this->load->admin('order_products/create', $data);
     }
 
@@ -68,11 +76,11 @@ class Order_products extends CI_Controller
 
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('order_id', 'Order','required');
-            $this->form_validation->set_rules('product_id', 'Product','required');
-            $this->form_validation->set_rules('price', 'Price','required');
-            $this->form_validation->set_rules('quantity', 'Quantity','required');
-            $this->form_validation->set_rules('amount', 'Amount','required');
+            $this->form_validation->set_rules('order_id', 'Order', 'required');
+            $this->form_validation->set_rules('product_id', 'Product', 'required');
+            $this->form_validation->set_rules('price', 'Price', 'required');
+            $this->form_validation->set_rules('quantity', 'Quantity', 'required');
+            $this->form_validation->set_rules('amount', 'Amount', 'required');
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->admin('order_products/edit');
@@ -90,9 +98,8 @@ class Order_products extends CI_Controller
 
             if ($affected_rows > 0) {
                 $this->session->set_flashdata('success_message', 'All records has been changed successfully !');
-                
-                redirect('backend/order_products');
             }
+            redirect('backend/order_products');
         }
 
         $item = $this->order_products_md->selectDataById($id);
@@ -106,6 +113,12 @@ class Order_products extends CI_Controller
         $data['item'] = $item;
 
         $data['title'] = 'Product Edit';
+
+        $products = new Products_model;
+        $data['products'] = $products->select_all();
+
+        $orders = new Orders_model;
+        $data['orders'] = $orders->select_all();
 
         $this->load->admin('order_products/edit', $data);
     }

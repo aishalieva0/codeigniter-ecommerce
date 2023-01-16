@@ -14,13 +14,18 @@
                             <input type="text" name="title" class="form-control" placeholder="Enter Title">
                             <?php echo form_error('title'); ?>
                         </div>
-						
-						<div class="form-group">
-							<label for="parent_id">Subcategory</label>
-							<input type="text" name="parent_id" class="form-control" placeholder="Choose subcategory">
-							<?php echo form_error('parent_id'); ?>
-						</div>
-					
+
+                        <div class="form-group">
+                            <label for="parent_id">Parent Category</label>
+                            <br>
+                            <select name="parent_id">
+                                <option value="0">Choose parent category</option>
+                            <?php foreach ($categories as $cat) { ?>
+                                <option value="<?= $cat->id; ?>"><?= $cat->title; ?></option>
+                            <?php  } ?>
+                        </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="Status">Status</label>
                             <br>

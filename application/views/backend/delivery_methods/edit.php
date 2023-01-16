@@ -16,9 +16,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="order_id">order</label>
-                            <input type="text" name="order_id" class="form-control" value="<?= $item->order_id; ?>" placeholder="Enter order">
-                            <?php echo form_error('order_id'); ?>
+                            <label for="order_id">Order</label>
+                            <select name="order_id" class="form-control">
+
+                                <?php foreach ($orders as $order) :
+                                    $selected = '';
+                                    if ($item->order_id == $order->id) {
+                                        $selected = 'selected';
+                                    } ?>
+                                    <option value="<?= $order->id ?>" <?= $selected ?>><?= $order->id ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
 
                         <div class="form-group">
